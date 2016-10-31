@@ -10,24 +10,22 @@ import org.search.flight.model.Airline;
 
 public class AirlineDAOTest {
 
-//	private AirlineDAO victim = new AirlineDAO();
-	
 	@Test
 	public final void FirstAddAirline_ThenGetAirline() {
 		
 		Airline iberia = new Airline("IB", "iberia", new BigDecimal(10.0));
-		AirlineDAO.addAirline(iberia);
+		AirlineDAO.getAirlineDAO().addAirline(iberia);
 		
-		assertEquals(iberia.getName(), AirlineDAO.findAirlineByIATA("IB").get().getName());
+		assertEquals(iberia.getName(), AirlineDAO.getAirlineDAO().findAirlineByIATA("IB").get().getName());
 	}
 
 	@Test
 	public final void FirstAddAirline_ThenDeleteIt() {
 		
 		Airline iberia = new Airline("IB", "iberia", new BigDecimal(10.0));
-		AirlineDAO.addAirline(iberia);
+		AirlineDAO.getAirlineDAO().addAirline(iberia);
 		
-		assertTrue(AirlineDAO.deleteAirline("IB"));
+		assertTrue(AirlineDAO.getAirlineDAO().deleteAirline("IB"));
 	}
 
 }

@@ -12,4 +12,9 @@ public class Adult extends Passenger {
 		super(name, gender, age);
 	}
 
+	public Adult() {
+		super();
+	}
+
+
 }

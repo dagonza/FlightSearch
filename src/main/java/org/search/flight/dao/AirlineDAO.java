@@ -6,25 +6,29 @@ import java.util.Optional;
 
 import org.search.flight.model.Airline;
 
-public final class AirlineDAO{
+public class AirlineDAO{
 
-	private static List<Airline> airlineList = new ArrayList<Airline>();
+	private List<Airline> airlineList = new ArrayList<Airline>();
+	private static AirlineDAO instance = null;
 	
-//	public AirlineDAO(){
-//		airlineList= new ArrayList<Airline>();
-//	}
+	public static AirlineDAO getAirlineDAO(){
+		if(instance==null){
+			instance = new AirlineDAO();
+		}
+		return instance;
+	}
 		
-	public static void addAirline(Airline airline){
+	public void addAirline(Airline airline){
 		airlineList.add(airline);
 	}
 	
-	public static Optional<Airline> findAirlineByIATA(String IATACode){
+	public Optional<Airline> findAirlineByIATA(String IATACode){
 		return airlineList.stream().filter(a -> a.getIATACode().equals(IATACode)).findFirst();
 	}
 	
-	public static boolean deleteAirline(String IATACode){
+	public boolean deleteAirline(String IATACode){
 		
-		Optional<Airline> toDelete = AirlineDAO.findAirlineByIATA(IATACode);
+		Optional<Airline> toDelete = findAirlineByIATA(IATACode);
 		
 		if(toDelete.isPresent()){
 			airlineList.remove(toDelete.get());
@@ -34,7 +38,7 @@ public final class AirlineDAO{
 		}
 	}
 	
-	public static void deleteAll(){
+	public void deleteAll(){
 		airlineList.clear();
 	}
 }

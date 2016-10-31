@@ -51,6 +51,49 @@ public class Airline {
 		this.infantPrice = infantPrice;
 	}
 	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((IATACode == null) ? 0 : IATACode.hashCode());
+		result = prime * result + ((infantPrice == null) ? 0 : infantPrice.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Airline other = (Airline) obj;
+		if (IATACode == null) {
+			if (other.IATACode != null)
+				return false;
+		} else if (!IATACode.equals(other.IATACode))
+			return false;
+		if (infantPrice == null) {
+			if (other.infantPrice != null)
+				return false;
+		} else if (!infantPrice.equals(other.infantPrice))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	@Override
+	public String toString() {
+		return "Airline [IATACode=" + IATACode + ", name=" + name + ", infantPrice=" + infantPrice + "]";
+	}
+	
+	
+	
+	
 	
 
 }

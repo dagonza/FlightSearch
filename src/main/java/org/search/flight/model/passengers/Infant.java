@@ -9,4 +9,9 @@ public class Infant extends Passenger {
 		addTarifa(Discount.INFANT_PRICE);
 	}
 
+	public Infant() {
+		super();
+		addTarifa(Discount.INFANT_PRICE);
+	}
+
 }

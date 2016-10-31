@@ -1,51 +1,32 @@
 package org.search.flight;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import org.search.flight.bussines.PriceCalculator;
+import org.search.flight.dao.FlightDAO;
 import org.search.flight.model.Airport;
 import org.search.flight.model.Flight;
 import org.search.flight.model.Trip;
 import org.search.flight.model.passengers.Passenger;
-import org.search.flight.services.FlightService;
+import org.search.flight.service.PriceCalculatorService;
 
 public class FlightSearchApp {
 	
-	private Collection<Flight> flightList;
-	private FlightService flightService;
-	private PriceCalculator priceCalculator;
+	private FlightDAO flightDAO;
+	private PriceCalculatorService priceCalculator;
 	
 	public FlightSearchApp(){
-		flightList = new ArrayList<Flight>();
-		flightService = new FlightService();
-		priceCalculator = new PriceCalculator();
+		flightDAO = FlightDAO.getFlightDAO();
+		priceCalculator = new PriceCalculatorService();
 	}
 	
-	public List<Trip> searchFlight(List<Passenger> passengers, Airport from, Airport to, Date when){
+	public List<Trip> calculateTrips(List<Passenger> passengers, Airport from, Airport to, LocalDate when){
 		
-		List<Trip> trips = new ArrayList<Trip>(0);
+		List<Flight> flights = flightDAO.selecctFlightByAirportFromAndAirportTo(from, to);
 		
-		flightList.addAll(flightService.getFlightList(from, to));
-		
-		if(flightList.isEmpty()){
-			System.out.println("no flights available");
-		}else{
-		
-			for(Flight flight: flightList){
-				
-				Trip newTrip = new Trip(flight, passengers, when);
-				
-				priceCalculator.caculatePrice(newTrip);
-				newTrip.toString();
-				
-				trips.add(newTrip);
-			}
-		}
-		
-		return trips;
+		return flights.stream().map(flight -> new Trip(flight,passengers,when)).
+                map(priceCalculator::calculatePrice).collect(Collectors.toList());
 	}
 
 }
