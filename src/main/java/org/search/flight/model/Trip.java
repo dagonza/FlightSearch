@@ -3,24 +3,24 @@ package org.search.flight.model;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.time.LocalDate;
-import java.util.Collection;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.search.flight.model.passengers.Passenger;
 
 public class Trip {
-	
+
 	private Flight flight;
-	private Collection<Passenger> passengersList;
+	private List<Passenger> passengersList = new ArrayList<Passenger>();
 	private LocalDate plannedDate;
-	
-	public Trip(Flight flight, Collection<Passenger> passengersList, LocalDate plannedDate) {
-		super();
+	private BigDecimal tripPrice = new BigDecimal(0);
+
+	public Trip(Flight flight, List<Passenger> passengersList, LocalDate plannedDate) {
 		this.flight = flight;
 		this.passengersList = passengersList;
 		this.plannedDate = plannedDate;
 	}
 
-	
 	/**
 	 * @return the flight
 	 */
@@ -29,32 +29,41 @@ public class Trip {
 	}
 
 	/**
-	 * @param flight the flight to set
+	 * @param flight
+	 *            the flight to set
 	 */
 	public void setFlight(Flight flight) {
 		this.flight = flight;
 	}
-	
+
 	/**
-	 * @param passenger to add
+	 * @param passenger
+	 *            to add
 	 */
 	public void addPassenger(Passenger passenger) {
 		this.passengersList.add(passenger);
 	}
-	
-	public Collection<Passenger> getPassengersList(){
+
+	public List<Passenger> getPassengersList() {
 		return this.passengersList;
 	}
-	
-	public BigDecimal getTripTotalPrice(){
-	
+
+	public void calculateTripTotalPrice() {
+
 		BigDecimal total = new BigDecimal(BigInteger.ZERO);
-		
-		for(Passenger passenger:passengersList){
+
+		for (Passenger passenger : passengersList) {
 			total = total.add(passenger.getPrice());
 		}
-		
-		return total;
+
+		tripPrice = total;
+	}
+
+	/**
+	 * @return the tripPrice
+	 */
+	public BigDecimal getTripPrice() {
+		return tripPrice;
 	}
 
 	public LocalDate getPlannedDate() {
@@ -65,12 +74,11 @@ public class Trip {
 		this.plannedDate = plannedDate;
 	}
 
-
+	
 	@Override
 	public String toString() {
-		return flight.getairlineCodeFlight() + ", " + getTripTotalPrice() +" €";
+		return flight.getairlineCodeFlight() + ", " + getTripPrice() + " €";
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -81,7 +89,6 @@ public class Trip {
 		result = prime * result + ((plannedDate == null) ? 0 : plannedDate.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -109,7 +116,5 @@ public class Trip {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

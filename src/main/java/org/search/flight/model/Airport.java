@@ -4,49 +4,57 @@ public class Airport {
 
 	private String IATACode;
 	private String city;
-	
+
 	public Airport(String iATACode, String city) {
-		super();
 		IATACode = iATACode;
 		this.city = city;
 	}
 	
+	public Airport(){
+		IATACode="";
+		city="";
+	}
+
 	/**
 	 * @return the iATACode
 	 */
 	public String getIATACode() {
 		return IATACode;
 	}
-	
+
 	/**
-	 * @param iATACode the iATACode to set
+	 * @param iATACode
+	 *            the iATACode to set
 	 */
 	public void setIATACode(String iATACode) {
 		IATACode = iATACode;
 	}
-	
+
 	/**
 	 * @return the city
 	 */
 	public String getCity() {
 		return city;
 	}
-	
+
 	/**
-	 * @param city the city to set
+	 * @param city
+	 *            the city to set
 	 */
 	public void setCity(String city) {
 		this.city = city;
 	}
-	
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see java.lang.Object#toString()
 	 */
 	@Override
 	public String toString() {
 		return IATACode;
 	}
-	
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -55,7 +63,7 @@ public class Airport {
 		result = prime * result + ((city == null) ? 0 : city.hashCode());
 		return result;
 	}
-	
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -77,7 +85,5 @@ public class Airport {
 			return false;
 		return true;
 	}
-	
-	
-	
+
 }

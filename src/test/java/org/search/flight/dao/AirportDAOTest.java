@@ -12,18 +12,18 @@ public class AirportDAOTest {
 	public final void FirstAddAirport_ThenGetAirport() {
 		
 		Airport madrid = new Airport("MAD", "Madrid");
-		AirportDAO.getAirportDAO().addAirport(madrid);
+		AirportDAO.instance.addAirport(madrid);
 		
-		assertEquals(madrid.getCity(), AirportDAO.getAirportDAO().findAirportByIATA("MAD").get().getCity());
+		assertEquals(madrid.getCity(), AirportDAO.instance.findAirportByIATA("MAD").get().getCity());
 	}
 
 	@Test
 	public final void FirstAddAirport_ThenDeleteIt() {
 		
 		Airport madrid = new Airport("MAD", "Madrid");
-		AirportDAO.getAirportDAO().addAirport(madrid);
+		AirportDAO.instance.addAirport(madrid);
 		
-		assertTrue(AirportDAO.getAirportDAO().deleteAirport("MAD"));
+		assertTrue(AirportDAO.instance.deleteAirport("MAD"));
 	}
 
 }

@@ -16,7 +16,7 @@ public class FlightDAOTest {
 	
 	@After
 	public void clean(){
-		FlightDAO.getFlightDAO().deleteAll();
+		FlightDAO.instance.deleteAll();
 	}
 	
 	@Test
@@ -27,9 +27,9 @@ public class FlightDAOTest {
 		Airport france = new Airport("FRA", "france");
 
 		Flight aFlight = new Flight(cope, france, "IB2818", iberia , new BigDecimal(186));
-		FlightDAO.getFlightDAO().addFlight(aFlight);
+		FlightDAO.instance.addFlight(aFlight);
 		
-		assertEquals(aFlight, FlightDAO.getFlightDAO().selecctFlightByAirportFromAndAirportTo(cope, france).get(0));
+		assertEquals(aFlight, FlightDAO.instance.selecctFlightByAirportFromAndAirportTo(cope, france).get(0));
 		
 	}	
 	
@@ -42,9 +42,9 @@ public class FlightDAOTest {
 		Airport madrid = new Airport("MAD", "madrid");
 
 		Flight aFlight = new Flight(cope, france, "IB2818", iberia , new BigDecimal(186));
-		FlightDAO.getFlightDAO().addFlight(aFlight);
+		FlightDAO.instance.addFlight(aFlight);
 		
-		assertTrue(FlightDAO.getFlightDAO().selecctFlightByAirportFromAndAirportTo(cope,madrid).isEmpty());
+		assertTrue(FlightDAO.instance.selecctFlightByAirportFromAndAirportTo(cope,madrid).isEmpty());
 		
 		clean();
 	}

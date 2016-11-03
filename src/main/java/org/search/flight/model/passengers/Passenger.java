@@ -9,7 +9,7 @@ import org.search.flight.model.Discount;
 public abstract class Passenger {
 
 	
-	private List<Discount> tarifas = new ArrayList<Discount>(0);
+	private List<Discount> discountList = new ArrayList<Discount>(0);
 	
 	private String name;
 	private String gender;
@@ -25,6 +25,9 @@ public abstract class Passenger {
 	public Passenger(){
 	}
 	
+	public Passenger(Passenger passenger) {
+		
+	}
 	/**
 	 * @return the name
 	 */
@@ -67,16 +70,16 @@ public abstract class Passenger {
 		this.age = age;
 	}
 
-	public List<Discount> getTarifas() {
-		return tarifas;
+	public List<Discount> getDiscountList() {
+		return discountList;
 	}
 
-	public void setTarifas(List<Discount> tarifas) {
-		this.tarifas = tarifas;
+	public void setTarifas(List<Discount> discountList) {
+		this.discountList = discountList;
 	}
 	
 	public void addTarifa(Discount discount){
-		this.tarifas.add(discount);
+		this.discountList.add(discount);
 	}
 
 
@@ -100,7 +103,7 @@ public abstract class Passenger {
 		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		result = prime * result + ((price == null) ? 0 : price.hashCode());
-		result = prime * result + ((tarifas == null) ? 0 : tarifas.hashCode());
+		result = prime * result + ((discountList == null) ? 0 : discountList.hashCode());
 		return result;
 	}
 
@@ -130,17 +133,17 @@ public abstract class Passenger {
 				return false;
 		} else if (!price.equals(other.price))
 			return false;
-		if (tarifas == null) {
-			if (other.tarifas != null)
+		if (discountList == null) {
+			if (other.discountList != null)
 				return false;
-		} else if (!tarifas.equals(other.tarifas))
+		} else if (!discountList.equals(other.discountList))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Passenger [tarifas=" + tarifas + ", name=" + name + ", gender=" + gender + ", age=" + age + ", price="
+		return "Passenger [discountList=" + discountList + ", name=" + name + ", gender=" + gender + ", age=" + age + ", price="
 				+ price + "]";
 	}
 	

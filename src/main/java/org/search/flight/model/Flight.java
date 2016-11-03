@@ -3,22 +3,20 @@ package org.search.flight.model;
 import java.math.BigDecimal;
 
 public class Flight {
-	
+
 	private Airport from;
 	private Airport to;
 	private String airlineCodeFlight;
 	private Airline airline;
 	private BigDecimal basePrice;
 
-	//Constructor with Airports
 	public Flight(Airport from, Airport to, String airlineCodeFlight, Airline airline, BigDecimal basePrice) {
 		this.from = from;
 		this.to = to;
-		this.airline=airline;
+		this.airline = airline;
 		this.airlineCodeFlight = airlineCodeFlight;
 		this.basePrice = basePrice;
 	}
-	
 
 	/**
 	 * @return the from
@@ -27,14 +25,13 @@ public class Flight {
 		return from;
 	}
 
-
 	/**
-	 * @param from the from to set
+	 * @param from
+	 *            the from to set
 	 */
 	public void setFrom(Airport from) {
 		this.from = from;
 	}
-
 
 	/**
 	 * @return the to
@@ -43,34 +40,29 @@ public class Flight {
 		return to;
 	}
 
-
 	/**
-	 * @param to the to to set
+	 * @param to
+	 *            the to to set
 	 */
 	public void setTo(Airport to) {
 		this.to = to;
 	}
 
-
 	public String getairlineCodeFlight() {
 		return airlineCodeFlight;
 	}
-
 
 	public void setairlineCodeFlight(String airlineCodeFlight) {
 		this.airlineCodeFlight = airlineCodeFlight;
 	}
 
-
 	public BigDecimal getBasePrice() {
 		return basePrice;
 	}
 
-
 	public void setBasePrice(BigDecimal basePrice) {
 		this.basePrice = basePrice;
 	}
-
 
 	public Airline getAirline() {
 		return airline;
@@ -79,7 +71,6 @@ public class Flight {
 	public void setAirline(Airline airline) {
 		this.airline = airline;
 	}
-
 
 	@Override
 	public int hashCode() {
@@ -92,7 +83,6 @@ public class Flight {
 		result = prime * result + ((to == null) ? 0 : to.hashCode());
 		return result;
 	}
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -131,13 +121,12 @@ public class Flight {
 		return true;
 	}
 
-
 	@Override
 	public String toString() {
 		return "Flight [from=" + from + ", to=" + to + ", airlineCodeFlight=" + airlineCodeFlight + ", airline="
 				+ airline + ", basePrice=" + basePrice + "]";
 	}
-	
-	
+
+
 
 }

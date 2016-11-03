@@ -9,11 +9,9 @@ package org.search.flight.model.passengers;
 public class Adult extends Passenger {
 
 	public Adult(String name, String gender, int age) {
-		super(name, gender, age);
 	}
 
 	public Adult() {
-		super();
 	}
 
 
